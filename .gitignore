@@ -1,3 +1,4 @@
+#### Combined gitignore of Github Default Node, ExpressJS, & Next.JS
 # Logs
 logs
 *.log
@@ -102,3 +103,28 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+### Next.js
+# dependencies
+/.pnp
+.pnp.js
+
+# next.js
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel

@@ -1,0 +1,21 @@
+{
+  "name": "Foodie-Backend",
+  "version": "1.0.0",
+  "description": "Backend for Foodie App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "develop": "nodemon server.js"
+  },
+  "author": "Christian Garrovillo <christian_prieto@yahoo.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.6"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
