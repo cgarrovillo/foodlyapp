@@ -9,8 +9,11 @@ export default function Navbar() {
       <div className="navbar__brand">
         <a>Brand</a>
       </div>
-      <div className="navbar__container">
-        <ul className={`navbar__menu ${isShown ? 'open' : ''}`}>
+      <button className="navbar__trigger" onClick={(e) => setIsShown(!isShown)}>
+        <FontAwesomeIcon icon={faBars} />
+      </button>
+      <div className={`navbar__container ${isShown ? 'open' : ''}`}>
+        <ul className="navbar__menu">
           <li>
             <a>Tag</a>
           </li>
@@ -21,12 +24,6 @@ export default function Navbar() {
             <a>Tag</a>
           </li>
         </ul>
-        <button
-          className="navbar__trigger"
-          onClick={(e) => setIsShown(!isShown)}
-        >
-          <FontAwesomeIcon icon={faBars} />
-        </button>
       </div>
     </nav>
   )

@@ -659,43 +659,45 @@ h6 {
 
 .navbar {
   width: 100%;
-  padding: 2em;
+  padding: 1.2em 2em 1.2em 2em;
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  background-color: $clr-light;
 
   touch-action: none;
+  .navbar__trigger {
+    position: relative;
+    z-index: 9;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 1.4rem;
+  }
 
   .navbar__container {
     display: flex;
-    align-items: center;
+    flex-flow: column nowrap;
+
+    //Positioning of itself when opened
+    position: absolute;
+    top: 65px;
+    right: 0;
+    left: 0;
+    background-color: $clr-light;
+
+    //Smooth Transition
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+
+    &.open {
+      height: 107px;
+    }
 
     .navbar__menu {
       margin: 0;
       list-style-type: none;
-      display: flex;
-      flex-flow: column nowrap;
-      background-color: $clr-light;
-      z-index: 800;
-
-      position: absolute;
-      top: 80px;
-      right: -100%;
-
-      transition: 0.6s ease-in-out;
-      &.open {
-        right: 50%;
-        transform: translateX(50%);
-      }
-    }
-
-    .navbar__trigger {
-      display: block;
-      margin: 0;
-      padding: 0;
-      width: 1.4rem;
-      z-index: 900;
     }
   }
 }
@@ -707,27 +709,6 @@ h6 {
   background: var(--color-base);
   background-position: center;
   background-size: cover;
-}
-
-.site-nav-item {
-  display: inline-block;
-  padding: 5px 10px;
-  color: #fff;
-  opacity: 0.7;
-}
-
-.site-nav-item:hover {
-  text-decoration: none;
-  opacity: 1;
-}
-
-.site-nav-icon {
-  height: 15px;
-  margin: -5px 0 0;
-}
-
-.site-logo {
-  height: 25px;
 }
 
 .site-mast {
@@ -768,43 +749,17 @@ h6 {
   opacity: 0.7;
 }
 
-.site-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 15px 0 0 0;
-}
-
-.site-nav-left {
-  margin: 0 20px 0 -10px;
-}
-
-.site-nav-button {
-  display: inline-block;
-  padding: 5px 10px;
-  border: #fff 1px solid;
-  color: #fff;
-  font-size: 1.3rem;
-  line-height: 1em;
-  border-radius: var(--radius);
-  opacity: 0.7;
-}
-
-.site-nav-button:hover {
-  text-decoration: none;
-}
-
 @media (min-width: 680px) {
+  //Navbar on big screens
   .navbar {
+    .navbar__trigger {
+      display: none;
+    }
     .navbar__container {
+      position: initial;
+      height: auto;
       .navbar__menu {
         display: flex;
-        flex-flow: row nowrap;
-        position: inherit;
-      }
-
-      .navbar__trigger {
-        display: none;
       }
     }
   }
