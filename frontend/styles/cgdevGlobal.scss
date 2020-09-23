@@ -299,7 +299,6 @@ th {
 html {
   overflow-x: hidden;
   overflow-y: scroll;
-  background: $clr-dark;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -312,7 +311,6 @@ body {
   font-style: normal;
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
-  background: $clr-light;
   font-feature-settings: 'liga' 0;
 
   -webkit-font-smoothing: antialiased;
@@ -663,7 +661,7 @@ h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $clr-light;
+  background-color: inherit;
 
   touch-action: none;
   .navbar__trigger {
@@ -684,7 +682,7 @@ h6 {
     top: 65px;
     right: 0;
     left: 0;
-    background-color: $clr-light;
+    background-color: inherit;
 
     //Smooth Transition
     height: 0;
