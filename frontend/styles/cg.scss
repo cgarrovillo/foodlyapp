@@ -755,6 +755,7 @@ h6 {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: center;
   margin: 10em 0 10em 0;
 }
 
@@ -765,6 +766,13 @@ button.cta {
   background-color: $clr-accent;
   color: var(--clr-primary);
   padding: 0.8em 1em;
+
+  a {
+    color: inherit;
+  }
+}
+
+.input--searchbar {
 }
 
 /* Index
@@ -775,11 +783,9 @@ button.cta {
 
 /* Footer
 /* ---------------------------------------------------------- */
-
 footer {
-  // width: 100%;
-  // position: relative;
-  // bottom: 0;
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
 }
 
 /* Koenig Styles
