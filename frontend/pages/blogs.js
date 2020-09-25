@@ -30,7 +30,7 @@ export default function Blogs() {
           <SearchBar />
         </div>
       </div>
-      <div className="container">
+      <div className="container cards">
         <LandscapeCard />
         <LandscapeCard />
         <LandscapeCard />
