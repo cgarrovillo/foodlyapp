@@ -8,7 +8,7 @@ export default function LandscapeCard() {
           <div className="info__details">
             <span className="details__subtitle">Category</span>
             <a>
-              <h6 className="details__title">Blog Title</h6>
+              <h5 className="details__title">Blog Title</h5>
               <p className="details__summary">Summary</p>
             </a>
           </div>
