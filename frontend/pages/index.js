@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Footer from '../components/Footer/Footer'
 import Button from '../components/Interaction/Button'
-import Navbar from '../components/Navbar/Navbar'
 
 export default function Home() {
   return (
@@ -12,9 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <Navbar />
-      </header>
+      <header></header>
       <main>
         <div className="container">
           <div className="hero">
@@ -55,7 +51,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

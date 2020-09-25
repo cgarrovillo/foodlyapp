@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { setBlog } from '../redux/BlogSlice'
 
+import SearchBar from '../components/Interaction/SearchBar'
+import LandscapeCard from '../components/Content/Card'
+
 export default function Blogs() {
   const [isLoaded, setIsLoaded] = useState(false)
   const dispatch = useDispatch()
@@ -20,10 +23,19 @@ export default function Blogs() {
       })
       .catch((err) => console.log(err))
   }, [])
-  console.log(state)
   return (
     <>
-      <div className="container"></div>
+      <div className="container">
+        <div className="header">
+          <SearchBar />
+        </div>
+      </div>
+      <div className="container">
+        <LandscapeCard />
+        <LandscapeCard />
+        <LandscapeCard />
+        <LandscapeCard />
+      </div>
     </>
   )
 }

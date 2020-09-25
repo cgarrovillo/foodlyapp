@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { HiMoon, HiOutlineMoon } from 'react-icons/hi'
+import { HiMoon } from 'react-icons/hi'
 
 export default function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false)
