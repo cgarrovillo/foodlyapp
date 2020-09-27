@@ -8,7 +8,7 @@ const auth = (req, res, next) => {
 
   //Check for token
   if (!token) {
-    res.status(401).send({ msg: 'Unauthorized: No token' })
+    return res.status(401).send({ msg: 'Unauthorized: No token' })
   }
 
   try {
@@ -33,7 +33,7 @@ const auth = (req, res, next) => {
         throw err
       })
   } catch (err) {
-    throw err
+    res.status(400).send({ msg: 'Token is not valid or missing' })
   }
 }
 
