@@ -6,6 +6,7 @@ const auth = require('../../middlewares/auth')
 
 // Blog Model
 const BlogModel = require('../../models/BlogModel')
+const AccountModel = require('../../models/AccountModel')
 
 // @route   GET api/blogs
 // @desc    Get all Blogs
@@ -20,15 +21,21 @@ router.get('/', (req, res) => {
 // @desc    Create A Blog
 // @access  Private
 router.post('/', auth, (req, res) => {
-  const newBlog = new BlogModel({
-    name: req.body.name,
-    bio: req.body.bio,
-    author: req.account.id,
-  })
+  const { name, authorId } = req.body
 
-  //TODO: Check if req.account.id exists on the database for ++robustness
+  BlogModel.findOne({ name: name })
+    .then((blog) => {
+      if (blog) return res.status(400).send({ msg: 'Blog already exists' })
 
-  newBlog.save().then((blog) => res.send(blog))
+      const newBlog = new BlogModel({
+        name: req.body.name,
+        authorId: req.body.authorizedAccount.id,
+      })
+      newBlog.save().then((createdBlog) => res.send(createdBlog))
+    })
+    .catch((err) => {
+      throw err
+    })
 })
 
 // @route   DELETE api/blogs/:id
@@ -36,8 +43,19 @@ router.post('/', auth, (req, res) => {
 // @access  Private
 router.delete('/:id', auth, (req, res) => {
   BlogModel.findById(req.params.id)
-    .then((blog) => blog.remove().then(() => res.send({ success: true })))
-    .catch((err) => res.status(404).send({ success: false }))
+    .then((blog) => {
+      AccountModel.findById(blog.authorId).then((acc) => {
+        if (!acc) return res.status(404).send({ msg: 'Unauthorized.' })
+
+        blog
+          .remove()
+          .then(() => res.send({ success: true }))
+          .catch((err) => {
+            throw err
+          })
+      })
+    })
+    .catch((err) => res.status(404).send({ msg: 'Could not delete.' }))
 })
 
 module.exports = router

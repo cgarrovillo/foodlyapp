@@ -22,7 +22,7 @@ const signJwtAndSend = (account, res) => {
     secret,
 
     //Token Options
-    { expiresIn: 7200 },
+    { expiresIn: 3600 },
 
     //Callback
     (err, token) => {
@@ -40,10 +40,10 @@ const signJwtAndSend = (account, res) => {
   )
 }
 
-// @route   POST api/accounts/register
+// @route   POST api/accounts
 // @desc    Create an Account
 // @access  Public
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
   const { email, password, name } = req.body
 
   //Simple validation
@@ -79,7 +79,7 @@ router.post('/register', (req, res) => {
 })
 
 // @route   POST api/accounts/auth
-// @desc   Auth User
+// @desc   Authenticate User
 // @access  Public
 router.post('/auth', (req, res) => {
   const { email, password } = req.body
@@ -93,7 +93,7 @@ router.post('/auth', (req, res) => {
 
   //Check for nonexistant account
   AccountModel.findOne({ email: email }).then((account) => {
-    if (!account) return res.status(400).send({ msg: 'Account does not exist' })
+    if (!account) return res.status(400).send({ msg: 'Invalid credentials' })
 
     // Validate password
     bcrypt.compare(password, account.password).then((match) => {
@@ -108,18 +108,29 @@ router.post('/auth', (req, res) => {
 // @desc    Get user based on Account.id
 // @access  Private
 router.get('/', auth, (req, res) => {
-  AccountModel.findById(req.account.id) //account.id coming from the returned object of the auth middleware
+  AccountModel.findById(req.body.authorizedAccount.id) //authorizedAccount.id coming from the returned object of the auth middleware
     .then((account) => {
       if (!account) {
         return res.status(400).send({
-          msg:
-            'Account could not be found using the provided token. Did you login?',
+          msg: 'Account could not be found using the provided token.',
         })
       }
       res.send(account)
     })
     .catch((err) => {
       throw err
+    })
+})
+
+/** @route   DELETE api/account/
+ *  @desc    Delete an Account
+ *  @access  Private
+ */
+router.delete('/', auth, (req, res) => {
+  AccountModel.findByIdAndDelete(req.body.authorizedAccount.id)
+    .then(() => res.send({ success: true }))
+    .catch((err) => {
+      res.status(400).send('Could not delete')
     })
 })
 
