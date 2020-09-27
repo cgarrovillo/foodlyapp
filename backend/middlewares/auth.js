@@ -26,7 +26,7 @@ const auth = (req, res, next) => {
           })
 
         //Add account from payload to the request body. Account is derived using id from the JWT payload (as the payload includes the Account ID)
-        req.body.authorizedAccount = decoded
+        req.body.authorizedAccount = account
         next()
       })
       .catch((err) => {

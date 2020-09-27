@@ -25,7 +25,7 @@ router.post('/', auth, (req, res) => {
 
   BlogModel.findOne({ name: name })
     .then((blog) => {
-      if (blog) return res.status(400).send({ msg: 'Blog already exists' })
+      if (blog) return res.status(400).send({ msg: 'That Blog Name is taken.' })
 
       const newBlog = new BlogModel({
         name: req.body.name,
@@ -44,16 +44,16 @@ router.post('/', auth, (req, res) => {
 router.delete('/:id', auth, (req, res) => {
   BlogModel.findById(req.params.id)
     .then((blog) => {
-      AccountModel.findById(blog.authorId).then((acc) => {
-        if (!acc) return res.status(404).send({ msg: 'Unauthorized.' })
+      //If the blog's ObjectId does not match the authorizedAccount's ObjectId (decoded from the auth middleware), do not proceed
+      if (!blog.authorId.equals(req.body.authorizedAccount._id))
+        return res.status(404).send({ msg: 'Unauthorized.' })
 
-        blog
-          .remove()
-          .then(() => res.send({ success: true }))
-          .catch((err) => {
-            throw err
-          })
-      })
+      blog
+        .remove()
+        .then(() => res.send({ success: true }))
+        .catch((err) => {
+          throw err
+        })
     })
     .catch((err) => res.status(404).send({ msg: 'Could not delete.' }))
 })
