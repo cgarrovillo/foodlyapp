@@ -6,8 +6,8 @@ const BlogSchema = new Schema({
     type: String,
     required: true,
   },
-  bio: {
-    type: String,
+  author: {
+    type: mongoose.Types.ObjectId,
     required: true,
   },
   createdAt: {

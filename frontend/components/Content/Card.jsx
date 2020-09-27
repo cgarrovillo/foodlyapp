@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LandscapeCard() {
+export default function Card() {
   return (
     <div>
       <article className="card">
@@ -9,7 +9,7 @@ export default function LandscapeCard() {
             <span className="details__subtitle">Category</span>
             <a>
               <h5 className="details__title">Blog Title</h5>
-              <p className="details__summary">Summary</p>
+              <p className="details__summary">Summary/Bio</p>
             </a>
           </div>
           <div className="info__metadata">

@@ -14,11 +14,12 @@ app.use((req, res, next) => {
 })
 
 // MongoDB
-const db = require('./config/keys').mongoURI
+const DB = require('./config').DB
 mongoose
-  .connect(db, {
+  .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => {
     console.log('MongoDB connected')
@@ -26,8 +27,8 @@ mongoose
   .catch((err) => console.log(err))
 
 // Routes
-const blogRoute = require('./routes/api/blog')
-app.use('/api/blogs', blogRoute)
+app.use('/api/blogs', require('./routes/api/blog'))
+app.use('/api/accounts', require('./routes/api/account'))
 
 // Start Server
 const port = process.env.PORT || 5000
