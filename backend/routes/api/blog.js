@@ -6,7 +6,6 @@ const auth = require('../../middlewares/auth')
 
 // Blog Model
 const BlogModel = require('../../models/BlogModel')
-const AccountModel = require('../../models/AccountModel')
 
 // @route   GET api/blogs
 // @desc    Get all Blogs
@@ -35,6 +34,7 @@ router.post('/', auth, (req, res) => {
     })
     .catch((err) => {
       throw err
+      //TODO? res.status(400).end ????
     })
 })
 
