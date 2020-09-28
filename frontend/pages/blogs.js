@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import SearchBar from '../components/Interaction/SearchBar'
 import Card from '../components/Content/Card'
+import Head from 'next/head'
 
 export default function Blogs() {
   const [allBlogs, setAllBlogs] = useState([])
@@ -21,17 +22,23 @@ export default function Blogs() {
 
   return (
     <>
-      <div className="container">
-        <div className="header">
-          <SearchBar />
+      <Head>
+        <title>Food Blog | Blogs</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main>
+        <div className="container">
+          <div className="header">
+            <SearchBar />
+          </div>
         </div>
-      </div>
-      <div className="container cards">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+        <div className="container cards">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </main>
     </>
   )
 }

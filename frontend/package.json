@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "formik": "^2.1.5",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -17,7 +18,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.26.11"
+    "sass": "^1.26.11",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "redux-devtools": "^3.7.0"

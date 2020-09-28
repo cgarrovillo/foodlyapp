@@ -17,15 +17,30 @@
 /* Variables
 /* ---------------------------------------------------------- */
 /* Colours */
-$clr-accent: #3eb0ef;
-$clr-accent2: #5b7a81;
+$clr-accent-1: #ff8303;
+$clr-accent-2: #5b7a81;
+$clr-accent-3: #c7d5d8;
 
-$clr-border: #c7d5d8;
-$clr-selection: #cbeafb;
+$clr-focus: #cbeafb;
 
+$clr-red-1: #a91622;
+$clr-red-2: #bd1628;
+$clr-red-3: #d31122;
+$clr-red-4: #f1202b;
+$clr-red-5: #f63c41;
+$clr-red-6: #ff9e79;
+
+//TODO undo bluish greys
 $clr-light: #fff;
-$clr-grey-light: #ccc;
-$clr-grey-dark: #999;
+$clr-grey-1: #2d2d2d;
+$clr-grey-2: #3a3a3a;
+$clr-grey-3: #4a4a4a;
+$clr-grey-4: #717171;
+$clr-grey-5: #a0a0a0;
+$clr-grey-6: #c5c5c5;
+$clr-grey-7: #e2e8f0;
+$clr-grey-8: #edf2f7;
+$clr-grey-9: #f7fafc;
 $clr-dark: #15171a;
 
 /* Fonts */
@@ -61,10 +76,16 @@ $margin: 2rem;
 $radius: 0.6rem;
 
 /* Shadows */
+$bs-diffused-2: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
+  rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
 $bs-diffused-4: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12),
   0 4px 4px rgba(0, 0, 0, 0.16), 0 8px 8px rgba(0, 0, 0, 0.2);
 $bs-diffused-3: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12),
   0 4px 4px rgba(0, 0, 0, 0.16);
+
+/* Borders*/
+$brdr-radius-1: 4px;
+$brdr-radius-2: 15px;
 
 /* Vanilla CSS Variables
  * For Light / Dark Mode Switching Dynamically (since SASS is pre-processed)
@@ -72,7 +93,7 @@ $bs-diffused-3: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12),
 :root {
   --clr-primary: #{$clr-light};
   --clr-secondary: #{$clr-dark};
-  --clr-grey: #{$clr-grey-dark};
+  --clr-grey: #{$clr-grey-4};
 }
 
 /* Mixins
@@ -268,9 +289,10 @@ button {
   border: none;
   background-color: inherit;
   margin: 0;
+  padding: 0;
 
   &:focus {
-    outline: 0.15em solid $clr-selection;
+    outline: 0.15em solid $clr-focus;
   }
 }
 button,
@@ -374,12 +396,12 @@ body {
 .dark {
   --clr-primary: #{$clr-dark};
   --clr-secondary: #{$clr-light};
-  --clr-grey: #{$clr-grey-light};
+  --clr-grey: #{$clr-grey-5};
 }
 
 ::selection {
   text-shadow: none;
-  background: $clr-selection;
+  background: $clr-focus;
 }
 
 hr {
@@ -496,7 +518,7 @@ blockquote cite a {
 }
 
 a {
-  color: #26a8ed;
+  color: $clr-accent-1;
   text-decoration: none;
 }
 
@@ -580,6 +602,10 @@ h5 {
   min-height: 100vh;
 }
 
+.portrait {
+  max-width: 500px;
+}
+
 .container {
   max-width: 1120px;
   margin: 0 auto;
@@ -589,7 +615,10 @@ h5 {
 .content {
   margin: 0 auto;
   font-size: 2rem;
-  line-height: 1.7em;
+
+  &--shadowed {
+    box-shadow: $bs-diffused-2;
+  }
 }
 
 .content-body {
@@ -607,119 +636,17 @@ h5 {
   }
 }
 
-.post-full-content {
-  max-width: 720px;
-  margin: 0 auto;
-  background: #fff;
-}
-
-.post-feature-image img {
-  margin: 0 0 3vw;
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-}
-
-.content-body h1 {
-  margin: 1em 0 0.5em 0;
-  font-size: 3.4rem;
-  font-weight: 700;
-}
-@media (max-width: 500px) {
-  .content-body h1 {
-    font-size: 2.8rem;
-  }
-}
-
-.content-title {
-  margin: 0 0 0.8em;
-  font-size: 5rem;
-}
-@media (max-width: 500px) {
-  .content-title {
-    margin: 0.8em 0;
-    font-size: 3.4rem;
-  }
-  .content {
-    font-size: 1.8rem;
-  }
-}
-
-.content-body h2 {
-  margin: 0.8em 0 0.4em 0;
-  font-size: 3.2rem;
-  font-weight: 700;
-}
-@media (max-width: 500px) {
-  .content-body h2 {
-    font-size: 2.6rem;
-  }
-}
-
-.content-body h3 {
-  margin: 0.5em 0 0.2em 0;
-  font-size: 2.8rem;
-  font-weight: 700;
-}
-@media (max-width: 500px) {
-  .content-body h3 {
-    font-size: 2.2rem;
-  }
-}
-
-.content-body h4 {
-  margin: 0.5em 0 0.2em 0;
-  font-size: 2.4rem;
-  font-weight: 700;
-}
-@media (max-width: 500px) {
-  .content-body h4 {
-    font-size: 2.2rem;
-  }
-}
-
-.content-body h5 {
-  display: block;
-  margin: 0.5em 0;
-  padding: 1em 0 1.5em;
-  border: 0;
-  font-family: Georgia, serif;
-  color: var(--color-primary);
-  font-style: italic;
-  font-size: 3.2rem;
-  line-height: 1.35em;
-  text-align: center;
-}
-
-.content-body h6 {
-  margin: 0.5em 0 0.2em 0;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.content-body figure {
-  margin: 0.4em 0 1.6em;
-  font-size: 2.8rem;
-  font-weight: 700;
-}
-
-.content-body pre {
-  margin: 0.4em 0 1.8em;
-  font-size: 1.6rem;
-  line-height: 1.4em;
-  white-space: pre-wrap;
-  padding: 20px;
-  background: var(--color-base);
-  color: #fff;
-  border-radius: 12px;
-}
-
 .img__wrapper {
   img {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
   }
+}
+
+.form__container {
+  width: 100%;
+  padding: 2em;
 }
 
 /* Header
@@ -765,6 +692,12 @@ h5 {
     .navbar__menu {
       margin: 0;
       list-style-type: none;
+      li {
+        margin: 0.4em 0 0 0.3em;
+        svg {
+          vertical-align: initial;
+        }
+      }
     }
   }
 }
@@ -778,6 +711,11 @@ h5 {
     .navbar__container {
       position: initial;
       height: auto;
+      justify-content: center;
+
+      &.open {
+        height: auto;
+      }
       .navbar__menu {
         display: flex;
       }
@@ -798,7 +736,7 @@ h5 {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  margin: 10em 0 10em 0;
+  margin: 10em auto 10em auto;
 }
 
 .header {
@@ -813,25 +751,63 @@ h5 {
 /* Interactives
 /* ---------------------------------------------------------- */
 
+a.cta,
 button.cta {
-  background-color: $clr-accent;
+  background-color: $clr-accent-1;
   color: var(--clr-primary);
   padding: 0.8em 1em;
+  border-radius: $brdr-radius-1;
 
   a {
     color: inherit;
   }
 }
 
-input[type='text'] {
-  border-radius: 15px;
+.input {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  width: 100%;
+  margin: 1.5em 0;
+
+  label {
+    color: var(--clr-grey);
+  }
+
+  input {
+    font-size: 1.1rem;
+    padding: 0.6em;
+    border: 1px solid $clr-grey-6;
+    border-radius: $brdr-radius-1;
+    margin: 0.375em 0 0.3em 0;
+    width: 100%;
+
+    &:focus {
+      outline: $clr-focus auto 1px;
+    }
+
+    + div {
+      color: $clr-red-3;
+      min-height: 1rem;
+    }
+  }
+
+  &--big {
+    box-shadow: $bs-diffused-3;
+    font-size: 1.2em;
+    padding: 1em 1em 1em 1em;
+    width: 100%;
+  }
+
+  &--round {
+    border-radius: $brdr-radius-2;
+  }
 }
 
-.input--searchbar {
-  box-shadow: $bs-diffused-3;
-  font-size: 1.2em;
-  padding: 1em 1em 1em 1em;
-  width: 100%;
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
 }
 
 /* Cards

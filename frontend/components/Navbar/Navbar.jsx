@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import { FaBars } from 'react-icons/fa'
 
 import Logo from '../Brand/Logo'
@@ -16,16 +17,16 @@ export default function Navbar() {
       </button>
       <div className={`navbar__container ${isShown ? 'open' : ''}`}>
         <ul className="navbar__menu">
-          <li>
+          <li onClick={(e) => setIsShown(false)}>
             <a>Tag</a>
           </li>
-          <li>
-            <a>Tag</a>
+          <li onClick={(e) => setIsShown(false)}>
+            <Link href="/blogs">Blogs</Link>
           </li>
-          <li>
-            <a>Tag</a>
+          <li onClick={(e) => setIsShown(false)}>
+            <Link href="/signin">Sign in</Link>
           </li>
-          <li>
+          <li onClick={(e) => setIsShown(false)}>
             <DarkModeToggle />
           </li>
         </ul>

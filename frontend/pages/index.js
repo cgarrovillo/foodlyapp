@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Food Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -15,9 +15,9 @@ export default function Home() {
         <div className="container">
           <div className="hero">
             <h1>The next generation of food blogs.</h1>
-            <Button>
-              <Link href="/blogs">View Blogs</Link>
-            </Button>
+            <Link href="/blogs" passHref>
+              <Button>View Blogs</Button>
+            </Link>
           </div>
         </div>
         <div className="container">
@@ -29,25 +29,21 @@ export default function Home() {
         <div className="container">
           <div className="hero">
             <h1>The next generation of food blogs.</h1>
-            <Button>View Blogs</Button>
           </div>
         </div>
         <div className="container">
           <div className="hero">
             <h1>The next generation of food blogs.</h1>
-            <Button>View Blogs</Button>
           </div>
         </div>
         <div className="container">
           <div className="hero">
             <h1>The next generation of food blogs.</h1>
-            <Button>View Blogs</Button>
           </div>
         </div>
         <div className="container">
           <div className="hero">
             <h1>The next generation of food blogs.</h1>
-            <Button>View Blogs</Button>
           </div>
         </div>
       </main>

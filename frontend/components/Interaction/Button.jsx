@@ -1,5 +1,11 @@
 import React from 'react'
 
-export default function Button({ children }) {
-  return <button className="cta">{children}</button>
-}
+const Button = React.forwardRef(({ children, ...rest }, ref) => {
+  return (
+    <a className="cta" ref={ref} {...rest}>
+      {children}
+    </a>
+  )
+})
+
+export default Button
