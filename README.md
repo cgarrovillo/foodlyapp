@@ -1,1 +1,1 @@
-# NextJS SSG + Redux + Express + MongoDB
+# NextJS + Redux + Express + MongoDB
