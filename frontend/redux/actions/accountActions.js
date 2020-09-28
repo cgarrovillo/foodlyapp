@@ -17,7 +17,7 @@ export const loadAccount = () => (dispatch, getState) => {
       })
     })
     .catch((err) => {
-      dispatch(returnErrors(err.response.data.msg, err.response.status))
+      dispatch(returnErrors(err.response?.data?.msg, err.response?.status))
       dispatch({
         type: AUTH_ERROR,
       })
