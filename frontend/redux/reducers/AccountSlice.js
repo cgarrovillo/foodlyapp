@@ -1,4 +1,5 @@
 import {
+  LOAD_TOKEN,
   USER_LOADED,
   USER_LOADING,
   LOGIN_SUCCESS,
@@ -18,6 +19,11 @@ const initialState = {
 
 export default function accountReducer(state = initialState, action) {
   switch (action.type) {
+    case LOAD_TOKEN:
+      return {
+        ...state,
+        token: localStorage.getItem('token'),
+      }
     case USER_LOADING:
       return {
         ...state,
@@ -32,6 +38,7 @@ export default function accountReducer(state = initialState, action) {
       }
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
+      localStorage.setItem('token', action.payload.token)
       return {
         ...state,
         ...action.payload, // user and token

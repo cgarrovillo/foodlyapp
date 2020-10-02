@@ -612,16 +612,19 @@ h5 {
   padding: 0 4vw;
 }
 
-.content {
+.article {
   margin: 0 auto;
-  font-size: 2rem;
 
   &--shadowed {
     box-shadow: $bs-diffused-2;
   }
+
+  &--rounded {
+    border-radius: $brdr-radius-1;
+  }
 }
 
-.content-body {
+.article-body {
   display: flex;
   flex-direction: column;
   font-family: $ff-serif;
@@ -647,6 +650,17 @@ h5 {
 .form__container {
   width: 100%;
   padding: 2em;
+}
+
+.content--double {
+  display: flex;
+  justify-content: space-between;
+
+  .double__left,
+  .double__right {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 }
 
 /* Header
@@ -718,6 +732,7 @@ h5 {
       }
       .navbar__menu {
         display: flex;
+        padding-right: 0;
       }
     }
   }

@@ -4,6 +4,7 @@ import axios from 'axios'
 import SearchBar from '../components/Interaction/SearchBar'
 import Card from '../components/Content/Card'
 import Head from 'next/head'
+import Navbar from '../components/Navbar/Navbar'
 
 export default function Blogs() {
   const [allBlogs, setAllBlogs] = useState([])
@@ -26,6 +27,11 @@ export default function Blogs() {
         <title>Food Blog | Blogs</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <header>
+        <Navbar />
+      </header>
+
       <main>
         <div className="container">
           <div className="header">

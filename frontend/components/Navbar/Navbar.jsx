@@ -7,6 +7,7 @@ import DarkModeToggle from '../Interaction/DarkModeToggle'
 
 export default function Navbar() {
   const [isShown, setIsShown] = useState(false)
+
   return (
     <nav className="navbar">
       <div className="navbar__brand">

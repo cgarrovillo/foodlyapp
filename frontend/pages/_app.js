@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
 import store from '../store'
-import { loadAccount } from '../redux/actions/accountActions'
+import { loadAccount, loadToken } from '../redux/actions/accountActions'
 
 import '../styles/cg.scss'
 
@@ -11,12 +11,12 @@ import '../styles/cg.scss'
 // things like a Redux Provider or Navbar
 export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
+    store.dispatch(loadToken())
     store.dispatch(loadAccount())
   }, [])
 
   return (
     <Provider store={store}>
-      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </Provider>

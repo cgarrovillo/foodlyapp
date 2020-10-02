@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Button from '../components/Interaction/Button'
+import Navbar from '../components/Navbar/Navbar'
 
 export default function Home() {
   return (
@@ -10,7 +11,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header></header>
+      <header>
+        <Navbar />
+      </header>
+
       <main>
         <div className="container">
           <div className="hero">

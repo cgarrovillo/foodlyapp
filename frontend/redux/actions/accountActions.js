@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { USER_LOADED, USER_LOADING, AUTH_ERROR } from './types'
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOAD_TOKEN } from './types'
 
 import { returnErrors } from './errorActions'
 
@@ -22,6 +22,10 @@ export const loadAccount = () => (dispatch, getState) => {
         type: AUTH_ERROR,
       })
     })
+}
+
+export const loadToken = () => (dispatch) => {
+  dispatch({ type: LOAD_TOKEN })
 }
 
 export const tokenConfig = () => {
