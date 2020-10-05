@@ -12,8 +12,9 @@ const auth = (req, res, next) => {
   }
 
   try {
+    const encodedSecret = Buffer.from(secret, 'base64')
     //Verify token
-    const decoded = jwt.verify(token, secret)
+    const decoded = jwt.verify(token, encodedSecret)
     const id = decoded.id
 
     //Check if Account actually exists on the database

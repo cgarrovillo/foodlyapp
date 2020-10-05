@@ -5,7 +5,8 @@ const app = express()
 
 app.use(express.json())
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000') // update to match the domain you will make the request from
+  // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'

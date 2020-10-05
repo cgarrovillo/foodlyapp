@@ -12,6 +12,8 @@ const auth = require('../../middlewares/auth')
  *  and sends it to the API request sender.
  */
 const signJwtAndSend = (account, res) => {
+  const encodedSecret = Buffer.from(secret, 'base64')
+
   jwt.sign(
     //Payload
     {
@@ -19,7 +21,7 @@ const signJwtAndSend = (account, res) => {
     },
 
     //Secret
-    secret,
+    encodedSecret,
 
     //Token Options
     { expiresIn: 3600 },

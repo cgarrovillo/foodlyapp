@@ -1,65 +1,75 @@
-import {
-  LOAD_TOKEN,
-  USER_LOADED,
-  USER_LOADING,
-  LOGIN_SUCCESS,
-  REGISTER_SUCCESS,
-  AUTH_ERROR,
-  LOGIN_FAIL,
-  REGISTER_FAIL,
-  LOGOUT_SUCCESS,
-} from '../actions/types'
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-  token: null, //localStorage.getItem('token')
-  isAuth: null,
-  isLoading: false,
-  account: null,
-}
+//MAJOR TODO: change localStorage to something more secure for JWT ----------------------
+export const accountSlice = createSlice({
+  name: 'account',
+  initialState: {
+    token: localStorage.getItem('token'),
+    isAuth: null,
+    isLoading: false,
+    account: null,
+  },
+  reducers: {
+    loadToken: (state) => {
+      localStorage ? (state.token = localStorage.getItem('token')) : null
+    },
+    setLoading: (state, action) => {
+      state.isLoading = action.payload
+    },
+    loginSuccess: (state, action) => {
+      successFn(state, action)
+    },
+    registerSuccess: (state, action) => {
+      successFn(state, action)
+    },
+    logoutSuccess: (state) => {
+      failFn(state)
+    },
+    authError: (state) => {
+      failFn(state)
+    },
+    loginFail: (state) => {
+      failFn(state)
+    },
+    registerFail: (state) => {
+      failFn(state)
+    },
+  },
+})
 
-export default function accountReducer(state = initialState, action) {
-  switch (action.type) {
-    case LOAD_TOKEN:
-      return {
-        ...state,
-        token: localStorage.getItem('token'),
-      }
-    case USER_LOADING:
-      return {
-        ...state,
-        isLoading: true,
-      }
-    case USER_LOADED:
-      return {
-        ...state,
-        isAuth: true,
-        isLoading: false,
-        account: action.payload,
-      }
-    case LOGIN_SUCCESS:
-    case REGISTER_SUCCESS:
-      localStorage.setItem('token', action.payload.token)
-      return {
-        ...state,
-        ...action.payload, // user and token
-        isAuth: true,
-        isLoading: false,
-      }
-    case LOGOUT_SUCCESS:
-    case AUTH_ERROR:
-    case LOGIN_FAIL:
-    case REGISTER_FAIL:
-      localStorage.removeItem('token')
-      return {
-        ...state,
-        token: null,
-        isAuth: false,
-        isLoading: false,
-        account: null,
-      }
-    default:
-      return {
-        ...state,
-      }
+const successFn = (state, action) => {
+  if (localStorage) {
+    localStorage.setItem('token')
   }
+  state = {
+    ...state,
+    ...action.payload,
+  }
+  state.isAuth = true
+  state.isLoading = false
 }
+
+const failFn = (state) => {
+  if (localStorage) {
+    localStorage.removeItem('token')
+  }
+  state.token = null
+  state.isAuth = false
+  state.isLoading = false
+  state.account = null
+}
+
+export const selectAccount = (state) => state.account
+
+export const {
+  loadToken,
+  setLoading,
+  loginSuccess,
+  registerSuccess,
+  logoutSuccess,
+  authError,
+  loginFail,
+  registerFail,
+} = accountSlice.actions
+
+export default accountSlice.reducer
